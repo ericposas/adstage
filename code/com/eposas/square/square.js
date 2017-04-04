@@ -36,7 +36,57 @@ Square.prototype.on = function(evtType,cb){
   this.div.addEventListener(evtType,cb);
 }
 
+// universal CSS property setter 
 Square.prototype.setProp = function(prop,val){
   this.div.style[prop] = val;
 }
+
+// how to create a proper getters-setters 
+Object.defineProperty(Square.prototype, 'opacity', {
+  get: function(){
+    return this.div.style.opacity;
+  },
+  set: function(val){
+    this.div.style.opacity = val;
+  }
+});
+
+Object.defineProperty(Square.prototype, 'alpha', {
+  get: function(){
+    return this.div.style.opacity;
+  },
+  set: function(val){
+    this.div.style.opacity = val;
+  }
+});
+
+Object.defineProperty(Square.prototype, 'outline', {
+  set: function(val){
+    this.div.style.border = val + 'px solid black';
+  }
+});
+
+Object.defineProperty(Square.prototype, 'x', {
+  set: function(val){
+    this.div.style.left = val + 'px';
+  }
+});
+
+Object.defineProperty(Square.prototype, 'y', {
+  set: function(val){
+    this.div.style.top = val + 'px';
+  }
+});
+
+Object.defineProperty(Square.prototype, 'color', {
+  set: function(val){
+    this.div.style.backgroundColor = val;
+  }
+});
+
+Object.defineProperty(Square.prototype, 'style', {
+  get: function(){
+    return this.div.style;
+  }
+});
 
