@@ -7,7 +7,16 @@ function Stage(){
   if(!window.adstage){
     window.adstage = {
       stage: stg,
-      count: 0 //count is the number of objects created or added to the stage
+      count: 0, //count is the number of objects created or added to the stage
+      images: 0,
+      loadedimages: 0,
+      ad: {
+        showImages: function(){
+          for(var i=0;i<adstage.images.length;i++){
+            
+          }
+        }
+      }
     }
   }
 }
