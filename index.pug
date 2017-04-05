@@ -1,18 +1,17 @@
 //- config
 - var width=300,height=250;
 - var adsize='width=' + width + ',height=' + height;
+- var scripts = ['log','TweenMax.min','stage','square','main'];
 
 doctype html
-html(land='en')
+html(lang='en')
   head
     meta(charset='utf-8')
     meta(name='ad.size' content=adsize)
     title
-    script(src='code/TweenMax.min.js')
-    script(src='code/stage.js')
-    script(src='code/square.js')
-    script(src='code/main.js')
-    link(rel='stylesheet' href='code/main.css')
+    each val in scripts
+      script(src='code/'+val+'.js')
+    link(href='code/main.css' rel='stylesheet')
   body(onload='init();')
   script.
     var clickTag = 'http://google.com/'
