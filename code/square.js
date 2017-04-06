@@ -1,24 +1,7 @@
+/*global window, console, adstage*/
+
 function Square(params){
   // constructor
-  // optional parameters to pass in to Square object 
-  // {bgColor, width, height, id}
-  var stage = this.stage;
-  var sq = document.createElement('div');
-  var _self = this;
-  this.params = params;
-  this.div = sq;
-  //square class
-  sq.classList.add('sq');
-  //check stage object 
-  if(window.adstage === 'initialized'){
-    checkParams(this);
-    //stage._objcount++;
-    if(this.params && this.params.id){this.div.id = this.params.id;} //else{sq.id = 'sq' + stage._objcount;}
-    this.id = this.div.id;
-  }else{
-    console.error('No "Stage" object initialized.');
-  }
-  
   function checkParams(self){
     if(self.params){
       //set default dimensions
@@ -34,8 +17,40 @@ function Square(params){
       }
     }
   }
-  
+  // optional parameters to pass in to Square object 
+  // {bgColor, width, height, id}
+  var stage = this.stage;
+  var sq = document.createElement('div');
+  var _self = this;
+  this.type = 'square';
+  this.params = params;
+  this.div = sq;
+  //square class
+  sq.classList.add('sq');
+  //check stage object 
+  if(window.adstage){
+    checkParams(this);
+    //stage._objcount++;
+    if(this.params && this.params.id){this.div.id = this.params.id;} //else{sq.id = 'sq' + stage._objcount;}
+    this.id = this.div.id;
+  }else{
+    console.error('No "Stage" object initialized.');
+  }
+  //._objcount+=1;
+  this.stage = adstage.stage;
 }
+
+Square.prototype.getID = function(){
+  if(this.type && this.type === 'square'){
+    return this.div.id;
+  }
+};
+
+Square.prototype.setID = function(id){
+  if(this.type && this.type === 'square'){
+    this.div.id = id;
+  }
+};
 
 
 Square.prototype.addImage = function(src){
@@ -64,21 +79,21 @@ Square.prototype.addImage = function(src){
         // stage.animate();
         
       }
-    }
+    };
   }else{
     console.error('Image already set on "' + _self.id + '".');
   }
-}
+};
 
 Square.prototype.on = function(evtType,cb){
   this.div.style.cursor = 'pointer';
   this.div.addEventListener(evtType,cb);
-}
+};
 
 // universal CSS property setter 
 Square.prototype.setProp = function(prop,val){
   this.div.style[prop] = val;
-}
+};
 
 // how to create a proper getters-setters 
 Object.defineProperty(Square.prototype, 'opacity', {
@@ -144,7 +159,7 @@ Object.defineProperty(Square.prototype, 'width', {
   set: function(val){
     var _self = this;
     if(!_self.params.width){
-      _self.div.style.width = parseInt(val) + 'px';
+      _self.div.style.width = parseInt(val,0) + 'px';
     }
   }
 });
@@ -153,7 +168,7 @@ Object.defineProperty(Square.prototype, 'height', {
   set: function(val){
     var _self = this;
     if(!_self.params.height){
-      _self.div.style.height = parseInt(val) + 'px';
+      _self.div.style.height = parseInt(val,0) + 'px';
     }
   }
 });
@@ -166,5 +181,4 @@ Object.defineProperty(Square.prototype, 'image', {
     }
   }
 });
-
 

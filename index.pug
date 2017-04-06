@@ -1,13 +1,13 @@
 //- config
 - var width=300,height=250;
 - var adsize='width=' + width + ',height=' + height;
-- var scripts = ['log','TweenMax.min','stage','square','main'];
+- var scripts = ['log','TweenMax.min','stage','square','factory','main'];
 
 doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    meta(name='ad.size' content=adsize)
+    meta(id='dimensions' name='ad.size' content=adsize w=width h=height)
     title
     each val in scripts
       script(src='code/'+val+'.js')

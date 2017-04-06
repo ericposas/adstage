@@ -1,7 +1,10 @@
+/*global console, adstage*/
+
 function Stage(id){
   //constructor
+  var self = this;
   var stg = document.createElement('div');
-  stg.id = id ? id : 'stage';
+  stg.id = id || 'stage';
   document.body.appendChild(stg);
   this.div = stg;
   this._images = [];
@@ -10,30 +13,34 @@ function Stage(id){
   this._adloaded = false;
   //set global 'adstage' object and globally accessible variables
   if(!window.adstage){
-    window.adstage = 'initialized';
+    window.adstage = {
+      stage: self
+    };
   }
 }
 
 Stage.prototype.add = function(obj){
   if(obj.div){
-    obj.stage = this;
-    this._objcount++;
-    obj.div.id = obj.div.id ? obj.div.id : 'sq' + this._objcount;
+    //obj.stage = this;
+    this._objcount+=1;
+    obj.div.id = obj.div.id || 'sq' + this._objcount;
     this.div.appendChild(obj.div);
   }
-}
+};
 
 Stage.prototype.showImages = function(){
-  for(var i = 0; i < this._images.length; i++){
+  var i;
+  for(i=0;i<this._images.length;i+=1){
     this._images[i].style.opacity = 1;
   }
-}
+};
 
 Stage.prototype.logImages = function(){
   if(!this._images){
     this._images = [];
   }
-  for(var i = 0; i < this._images.length; i++){
+  var i;
+  for(i=0; i < this._images.length; i+=1){
     var log;
     if(typeof this._images[i] !== 'string'){
       var regex = /images\/(.*)\./;
@@ -43,4 +50,5 @@ Stage.prototype.logImages = function(){
     }
     console.log(log);
   }
-}
+};
+
