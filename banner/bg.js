@@ -1,10 +1,10 @@
-/*global Square*/
+/*global Square, adstage*/
 
-function BG(stage){
+function BG(){
   var bg = new Square();
   //stage.add(bg);
-  bg.width = stage.dimensions.w;
-  bg.height = stage.dimensions.h;
+  bg.width = adstage.stage.dimensions.w;
+  bg.height = adstage.stage.dimensions.h;
   bg.color = '#43b02a';
   bg.x = 1;
   bg.y = 1;

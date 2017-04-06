@@ -19,6 +19,7 @@ function Square(params){
   }
   // optional parameters to pass in to Square object 
   // {bgColor, width, height, id}
+  this.stage = adstage.stage;
   var stage = this.stage;
   var sq = document.createElement('div');
   var _self = this;
@@ -37,7 +38,7 @@ function Square(params){
     console.error('No "Stage" object initialized.');
   }
   //._objcount+=1;
-  this.stage = adstage.stage;
+  //this.stage = adstage.stage;
 }
 
 Square.prototype.getID = function(){
@@ -56,11 +57,11 @@ Square.prototype.setID = function(id){
 Square.prototype.addImage = function(src){
   var _self = this, img, stage = _self.stage;
   if(!_self.attachedImage){
-    if(_self.params.width){
-      img = new Image(_self.params.width);
-    }else{
-      img = new Image();
-    }
+    //if(_self.params.width){
+    img = new Image(_self.params.width || adstage.stage.dimensions.w);
+    //}else{
+    //  img = new Image();
+    //}
     img.src = src ? 'images/' + src : console.error('Please supply an image src.'); // maybe set 'images' folder in a config file 
     this.attachedImage = img;
     this.attachedImage.style.opacity = 0;
