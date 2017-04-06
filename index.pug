@@ -1,17 +1,18 @@
 //- config
-- var width=300,height=250;
+- var title='AdStage',width=300,height=250;
 - var adsize='width=' + width + ',height=' + height;
-- var scripts = ['log','TweenMax.min','stage','square','factory','main'];
+- var clickURL='http://google.com/';
+- var scripts=['log','TweenMax.min','stage','square','factory','main'];
 
 doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
     meta(id='dimensions' name='ad.size' content=adsize w=width h=height)
-    title
+    title #{title}
     each val in scripts
       script(src='code/'+val+'.js')
     link(href='code/main.css' rel='stylesheet')
   body(onload='init();')
   script.
-    var clickTag = 'http://google.com/'
+    var clickTag='#{clickURL}';

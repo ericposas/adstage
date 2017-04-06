@@ -52,3 +52,4 @@ Stage.prototype.logImages = function(){
   }
 };
 
+
