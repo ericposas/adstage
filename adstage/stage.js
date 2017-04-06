@@ -11,6 +11,10 @@ function Stage(id){
   this._loadedimages = [];
   this._objcount = 0;
   this._adloaded = false;
+  this.dimensions = {
+    w: document.getElementById('dimensions').getAttribute('w'),
+    h: document.getElementById('dimensions').getAttribute('h')
+  };
   //set global 'adstage' object and globally accessible variables
   if(!window.adstage){
     window.adstage = {

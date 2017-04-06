@@ -1,10 +1,13 @@
 /*global Square*/
 
-function BG(){
+function BG(stage){
   var bg = new Square();
   //stage.add(bg);
-  bg.width = 300;
-  bg.height = 250;
+  bg.width = stage.dimensions.w;
+  bg.height = stage.dimensions.h;
   bg.color = '#43b02a';
+  bg.x = 1;
+  bg.y = 1;
   return bg;
 }
+
