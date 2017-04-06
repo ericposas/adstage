@@ -2,7 +2,9 @@
 - var title='AdStage',width=300,height=250;
 - var adsize='width=' + width + ',height=' + height;
 - var clickURL='http://google.com/';
-- var scripts=['log','TweenMax.min','stage','square','factory','main'];
+//- scripts
+- var adstage=['log','TweenMax.min','stage','square','factory'];
+- var adspec=['bg','main'];
 
 doctype html
 html(lang='en')
@@ -10,9 +12,11 @@ html(lang='en')
     meta(charset='utf-8')
     meta(id='dimensions' name='ad.size' content=adsize w=width h=height)
     title #{title}
-    each val in scripts
-      script(src='code/'+val+'.js')
-    link(href='code/main.css' rel='stylesheet')
+    each val in adstage
+      script(src='adstage/'+val+'.js')
+    each val in adspec
+      script(src='banner/'+val+'.js')
+    link(href='adstage/main.css' rel='stylesheet')
   body(onload='init();')
   script.
     var clickTag='#{clickURL}';

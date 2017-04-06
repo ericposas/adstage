@@ -23,7 +23,7 @@ function Square(params){
   var sq = document.createElement('div');
   var _self = this;
   this.type = 'square';
-  this.params = params;
+  this.params = params || 'undefined';
   this.div = sq;
   //square class
   sq.classList.add('sq');
@@ -154,11 +154,12 @@ Object.defineProperty(Square.prototype, 'style', {
 
 Object.defineProperty(Square.prototype, 'width', {
   get: function(){
+    var w = this.div.style.width || 0;
     return this.div.style.width;
   },
   set: function(val){
     var _self = this;
-    if(!_self.params.width){
+    if(typeof _self.params !== 'undefined' && !_self.params.width){
       _self.div.style.width = parseInt(val,0) + 'px';
     }
   }
@@ -167,7 +168,7 @@ Object.defineProperty(Square.prototype, 'width', {
 Object.defineProperty(Square.prototype, 'height', {
   set: function(val){
     var _self = this;
-    if(!_self.params.height){
+    if(typeof _self.params !== 'undefined' && !_self.params.height){
       _self.div.style.height = parseInt(val,0) + 'px';
     }
   }
