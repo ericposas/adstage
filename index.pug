@@ -1,6 +1,6 @@
 //- config
 - var tw_external='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js',tw_local='vendor/TweenMax.min.js';
-- var tw=tw_external, title='AdStage', width=300, height=250, adsize='width='+width+',height='+height;
+- var tw=tw_external;
 - var clickURL='http://www.google.com/';
 //- adstage scripts
 - var adstage=['log','stage','square','factory'];
@@ -11,8 +11,10 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    meta(id='dimensions' name='ad.size' content=adsize w=width h=height)
-    title #{title}
+    meta(id='dimensions' name='ad.size')
+    title
+    script.
+      var clickTag='#{clickURL}';
     script(src=tw)
     link(href='adstage/square.css' rel='stylesheet')
     each val in adstage
@@ -21,5 +23,3 @@ html(lang='en')
       script(src='classes/'+val+'.js')
     script(src='main.js')
   body(onload='init();')
-  script.
-    var clickTag='#{clickURL}';

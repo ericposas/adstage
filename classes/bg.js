@@ -3,6 +3,7 @@
 function BG(){
   var bg = new Square();
   //stage.add(bg);
+  bg.setID('bg');
   bg.width = adstage.stage.dimensions.w;
   bg.height = adstage.stage.dimensions.h;
   bg.color = '#43b02a';

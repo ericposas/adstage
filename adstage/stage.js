@@ -1,20 +1,30 @@
-/*global console, adstage*/
+/*global console, adstage, log*/
 
-function Stage(id){
-  //constructor
+function Stage(w,h,id){
+  // constructor
+  // document vars 
+  var dim = document.getElementById('dimensions');
+  var title = document.getElementsByTagName('title')[0];
+  // this
   var self = this;
   var stg = document.createElement('div');
   stg.id = id || 'stage';
+  stg.id = stg.id.replace(/\s+/g, '');
   document.body.appendChild(stg);
   this.div = stg;
   this._images = [];
   this._loadedimages = [];
   this._objcount = 0;
   this._adloaded = false;
-  this.dimensions = {
-    w: document.getElementById('dimensions').getAttribute('w'),
-    h: document.getElementById('dimensions').getAttribute('h')
-  };
+  if(w && h){
+    this.dimensions={w:w,h:h};
+  }else{
+    console.error('Please pass width/height values to Stage to set the ad size');
+  }
+  //set document ad.size vars
+  dim.setAttribute('content', 'width='+w+',height='+h);
+  //set ad title
+  title.innerHTML = id;
   //set global 'adstage' object and globally accessible variables
   if(!window.adstage){
     window.adstage = {
@@ -60,5 +70,3 @@ Stage.prototype.logImages = function(){
     console.log(log);
   }
 };
-
-

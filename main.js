@@ -3,7 +3,7 @@
 
 function init(){
   //new main.js file edited -- 04.07.2017
-  var stage = new Stage(); // our 'stage' instance
+  var stage = new Stage(300,250,'Test Ad'); // our 'stage' instance
   var bg = new BG(); //bg class instance
   var t1 = new Square({id:'t1',image:'1.png',x:1,y:1}); // text 01
   var logo = new Square({id:'logo',image:'logo.png'}); // logo graphic
