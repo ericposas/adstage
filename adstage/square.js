@@ -90,6 +90,10 @@ Square.prototype.on = function(evtType,cb){
   this.div.style.cursor = 'pointer';
   this.div.addEventListener(evtType,cb);
 };
+//adds TweenLite.to animation functionality to Square 
+Square.prototype.to = function(square,duration,props){
+  
+};
 
 // universal CSS property setter 
 Square.prototype.setProp = function(prop,val){
@@ -183,4 +187,9 @@ Object.defineProperty(Square.prototype, 'image', {
     }
   }
 });
+
+
+
+
+
 
