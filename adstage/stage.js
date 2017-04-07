@@ -30,6 +30,7 @@ Stage.prototype.add = function(obj){
     obj.div.id = obj.div.id || 'sq' + this._objcount;
     this.div.appendChild(obj.div);
   }
+  return this;
 };
 
 Stage.prototype.animate = function(){

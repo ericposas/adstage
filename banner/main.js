@@ -6,16 +6,15 @@ function init(){
   var stage = new Stage();
   //add 'bg' -- a custom class defined by user
   var bg = new BG();
-  stage.add(bg);
-  //t1
+  //stage.add(bg);
+  //text block 01
   var t1 = new Square({id:'t1',image:'1.png',x:1,y:1});
-  stage.add(t1);
   //logo
   var logo = new Square({id:'logo',image:'logo.png'});
-  stage.add(logo);
   //ad 'outline' overlayed on top -- doubles as clickTag click area
   var outline = new Outline();
-  stage.add(outline);
+  //chain add all elements! 
+  stage.add(bg).add(t1).add(logo).add(outline);
   
   //set all animation functions here 
   function animate(){
@@ -29,3 +28,4 @@ function init(){
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = animate;
 }
+
