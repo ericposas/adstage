@@ -1,10 +1,11 @@
 //- config
-- var title='AdStage',width=300,height=250;
-- var adsize='width=' + width + ',height=' + height;
-- var clickURL='http://google.com/';
-//- scripts
-- var adstage=['log','TweenMax.min','stage','square','factory'];
-- var adspec=['bg','outline','main'];
+- var tw_external='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js',tw_local='vendor/TweenMax.min.js';
+- var tw=tw_external, title='AdStage', width=300, height=250, adsize='width='+width+',height='+height;
+- var clickURL='http://www.google.com/';
+//- adstage scripts
+- var adstage=['log','stage','square','factory'];
+//- classes, objects defined by user
+- var custom=['bg','outline'];
 
 doctype html
 html(lang='en')
@@ -12,11 +13,13 @@ html(lang='en')
     meta(charset='utf-8')
     meta(id='dimensions' name='ad.size' content=adsize w=width h=height)
     title #{title}
+    script(src=tw)
+    link(href='adstage/square.css' rel='stylesheet')
     each val in adstage
       script(src='adstage/'+val+'.js')
-    each val in adspec
-      script(src='banner/'+val+'.js')
-    link(href='adstage/main.css' rel='stylesheet')
+    each val in custom
+      script(src='classes/'+val+'.js')
+    script(src='main.js')
   body(onload='init();')
   script.
     var clickTag='#{clickURL}';
