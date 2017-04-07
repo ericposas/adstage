@@ -4,4 +4,4 @@
 - some sort of issue with setting 'image' param when instantiating a Square instance - DONE!
 - work on creating animation interface with TweenLite commands - DONE!
 - incorporate TimeLine functionality "staggering" 
-
+- figure out how to access Square objects via the Stage object (feature-hideoption) 
