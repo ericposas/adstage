@@ -1,12 +1,20 @@
-/*global window, console, adstage*/
+/*global window, console, adstage, TweenLite*/
 
 function Square(params){
   // constructor
   function checkParams(self){
     if(self.params){
       //set default dimensions
-      if(self.params.width){ self.div.style.width = self.params.width + 'px'; }
-      if(self.params.height){ self.div.style.height = self.params.height + 'px'; }
+      if(self.params.width){
+        self.div.style.width = self.params.width + 'px';
+      }else{
+        self.div.style.width = adstage.stage.dimensions.w + 'px';
+      }
+      if(self.params.height){
+        self.div.style.height = self.params.height + 'px';
+      }else{
+        self.div.style.height = adstage.stage.dimensions.h + 'px';
+      }
       //set default color
       if(self.params.color){self.div.style.backgroundColor=self.params.color;}
       //set border if 'outline'
@@ -15,6 +23,9 @@ function Square(params){
       if(self.params.image && typeof self.params.image === 'string'){
         self.addImage(self.params.image);
       }
+      //set initial position
+      self.div.style.left = self.params.x + 'px' || '0px';
+      self.div.style.top = self.params.y + 'px' || '0px';
     }
   }
   // optional parameters to pass in to Square object 
@@ -90,9 +101,21 @@ Square.prototype.on = function(evtType,cb){
   this.div.style.cursor = 'pointer';
   this.div.addEventListener(evtType,cb);
 };
-//adds TweenLite.to animation functionality to Square 
-Square.prototype.to = function(square,duration,props){
-  
+//adds TweenLite.to and TweenLite.from animation functionality to Square 
+Square.prototype.to = function(duration,props,option){
+  if(option && option === 'img'){
+    TweenLite.to(this.attachedImage, duration, props);
+  }else{
+    TweenLite.to(this.div, duration, props);
+  }
+};
+
+Square.prototype.from = function(duration,props,option){
+  if(option && option === 'img'){
+    TweenLite.from(this.attachedImage, duration, props);
+  }else{
+    TweenLite.from(this.div, duration, props);
+  }
 };
 
 // universal CSS property setter 

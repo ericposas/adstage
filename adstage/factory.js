@@ -12,7 +12,9 @@ function Factory(stage,arrOfSquares){
       var img = props[i].image || 'blank.png';
       //var s = new Square({width:w,height:h,image:img});
       var s = new Square({width:w,height:h});
-      s.addImage(img);
+      if(img !== 'blank.png'){
+        s.addImage(img);
+      }
       _stage.add(s);
       s.setID(props[i].id || 'sq' + _stage._objcount);
       squares.push(s);
