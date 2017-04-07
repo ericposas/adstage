@@ -64,7 +64,6 @@ Square.prototype.setID = function(id){
   }
 };
 
-
 Square.prototype.addImage = function(src){
   var _self = this, img, stage = _self.stage;
   if(!_self.attachedImage){
@@ -209,7 +208,12 @@ Object.defineProperty(Square.prototype, 'image', {
   }
 });
 
-
+// return TweenLite-compatible name string 
+Object.defineProperty(Square.prototype, 'tw', {
+  get: function(){
+    return '#' + this.div.id;
+  }
+});
 
 
 

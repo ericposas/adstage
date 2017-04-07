@@ -14,7 +14,7 @@ function init(){
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = function (){
     function two(){
-      //TweenLite.to('#'+t1.getID(), 2, {scale:1.3,x:32,y:40});
+      //TweenLite.to(t1.tw, 2, {scale:1.3,x:32,y:40});
       t1.to(2, {scale:1.3,x:32,y:40});
     }
     (function one(){
