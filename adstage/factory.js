@@ -1,9 +1,9 @@
-/*global log, console, Square*/
+/*global log, console, Square, adstage*/
 
 //Square Factory class
 function Factory(stage,arrOfSquares){
   var props=arrOfSquares,_stage=stage,i,squares=[];
-  var docdim={w:document.getElementById('dimensions').getAttribute('w'),h:document.getElementById('dimensions').getAttribute('h')};
+  var docdim={w:adstage.stage.dimensions.w,h:adstage.stage.dimensions.h};
   if(window.adstage){
     for(i=0;i<props.length;i+=1){
       //var id = props[i].id || 'sq' + _stage._objcount;
