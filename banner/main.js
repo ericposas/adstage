@@ -19,8 +19,12 @@ function init(){
   
   //set all animation functions here 
   function animate(){
-    t1.from(0.75,{alpha:0, x:-50});
-    
+    function two(){
+      t1.to(2, {scale:1.3,x:32,y:40});
+    }
+    (function one(){
+      t1.from(0.75,{alpha:0, x:-50, onComplete:two});
+    }());
   }
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = animate;
