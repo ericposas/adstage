@@ -87,9 +87,7 @@ Square.prototype.addImage = function(src){
       if(stage._loadedimages.length === stage._images.length){
         stage._adloaded = true;
         stage.showImages();
-        //stage.showimages();
-        // stage.animate();
-        
+        stage.animate();
       }
     };
   }else{

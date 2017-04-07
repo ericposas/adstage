@@ -1,5 +1,5 @@
-/*global Stage, Square*/
-/*global BG, Outline*/
+/*global Stage, Square, adstage*/
+/*global BG, Outline, t1*/
 
 function init(){
   //new main.js file started -- 04.06.2017
@@ -10,7 +10,6 @@ function init(){
   //t1
   var t1 = new Square({id:'t1',image:'1.png',x:1,y:1});
   stage.add(t1);
-  t1.from(0.75,{alpha:0, x:-50});
   //logo
   var logo = new Square({id:'logo',image:'logo.png'});
   stage.add(logo);
@@ -18,4 +17,11 @@ function init(){
   var outline = new Outline();
   stage.add(outline);
   
+  //set all animation functions here 
+  function animate(){
+    t1.from(0.75,{alpha:0, x:-50});
+    
+  }
+  // dynamically set animation function to be called from adstage once all images are loaded 
+  adstage.stage.animate = animate;
 }

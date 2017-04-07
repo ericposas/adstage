@@ -32,6 +32,10 @@ Stage.prototype.add = function(obj){
   }
 };
 
+Stage.prototype.animate = function(){
+  //set this dynamically from init(); function 
+};
+
 Stage.prototype.showImages = function(){
   var i;
   for(i=0;i<this._images.length;i+=1){
