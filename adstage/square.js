@@ -1,4 +1,4 @@
-/*global window, console, adstage, TweenLite*/
+/*global window, console, adstage, TweenLite, TimelineLite*/
 
 function Square(params){
   // constructor

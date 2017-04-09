@@ -1,4 +1,4 @@
-/*global console, adstage, log*/
+/*global console, adstage, log, TimelineLite, TweenLite*/
 
 function Stage(w,h,id){
   // constructor
@@ -17,7 +17,7 @@ function Stage(w,h,id){
   this._objcount = 0;
   this._adloaded = false;
   this.squares = [];
-  this.square_divs = []
+  this.square_divs = [];
   this.square_imgs = [];
   if(w && h){
     this.dimensions={w:w,h:h};
@@ -35,6 +35,16 @@ function Stage(w,h,id){
     };
   }
 }
+
+// TimelineLite 
+Stage.prototype.tl = function(arr, stagger, cb){
+  var t = new TimelineLite(), i;
+  function setVis(arr,i){ TweenLite.set(arr[i], {visibility:'visible'}); }
+  for(i=0;i<arr.length;i+=1){
+    t.from(arr[i], 0.5, {x:-30, alpha:0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 ? cb : null)}, stagger);
+  }
+  return t;
+};
 
 Stage.prototype.addMult = function(arr){
   if(typeof arr === 'object'){

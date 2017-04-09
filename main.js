@@ -5,30 +5,26 @@ function init(){
   //new main.js file edited -- 04.07.2017
   var stage = new Stage(300,600,'Test Ad'); // our 'stage' instance
   var bg = new BG(); //bg class instance
-  //var t1 = new Square({id:'t1',image:'1.png',x:1,y:1}); 
-  var f1 = {
-    t1: new Square({id:'t1',image:'1.png',x:1,y:1,hide:true}),
-    t2: new Square({id:'t2',image:'2.png',x:1,y:1,hide:true}),
-    t3: new Square({id:'t3',image:'3.png',x:1,y:1,hide:true})
-  };
-  var f2 = {
-    t4: new Square({id:'t4',image:'4.png',x:1,y:1})
-  };
+  var t1 = new Square({id:'t1',image:'1.png',x:1,y:1,hide:true});
+  var t2 = new Square({id:'t2',image:'2.png',x:1,y:1,hide:true});
+  var t3 = new Square({id:'t3',image:'3.png',x:1,y:1,hide:true});
+  var t4 = new Square({id:'t4',image:'4.png',x:1,y:1});
   var logo = new Square({id:'logo',image:'logo.png'}); // logo graphic
   var outline = new Outline(); // ad 'outline' overlay -- click area
   //stage.add(bg).add(f1.t1).add(f1.t2).add(f1.t3).add(logo).add(outline); 
-  stage.addMult([bg,f1.t1,f1.t2,f1.t3,outline]);
+  stage.addMult([bg,t1,t2,t3,outline]);
   
   /* ANIMATION */
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = function (){
     (function one(){
-      var tl = new TimelineLite();
-      var frame1 = [f1.t1.tw, f1.t2.tw, f1.t3.tw];
-      tl.from(frame1[0], 0.5, {x:-30, alpha:0, onStart:function(){
-        TweenLite.set(frame1[0], {visibility:'visible'});
-      }});
-      f1.t2.from(0.5, {x:-20, alpha:0}); 
+      var tl;
+      function reverse(){
+        TweenLite.delayedCall(2, function(){
+          tl.reverse();
+        });
+      }
+      tl = stage.tl([t1.tw, t2.tw, t3.tw], '-=.1', reverse);
       
     }());
   };
