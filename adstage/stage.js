@@ -73,6 +73,14 @@ Stage.prototype.add = function(obj){
   return this;
 };
 
+// takes in an integer, and creates the specified number of squares in sequence -- usually for text blocks 
+Stage.prototype.generateSquares = function(integer){
+  var i;
+  for(i=0;i<integer;i+=1){
+    
+  }
+};
+
 Stage.prototype.animate = function(){
   //set this dynamically from init(); function 
 };
