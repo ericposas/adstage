@@ -1,5 +1,6 @@
 /*global window, console, adstage, TweenLite, TimelineLite*/
 
+// Square object constructor - takes a params object {} 
 function Square(params){
   // constructor
   function checkParams(self){
@@ -55,18 +56,21 @@ function Square(params){
   //this.stage = adstage.stage;
 }
 
+// get the id value of the Square's div 
 Square.prototype.getID = function(){
   if(this.type && this.type === 'square'){
     return this.div.id;
   }
 };
 
+// set a Square instance's id after creating a Square instance 
 Square.prototype.setID = function(id){
   if(this.type && this.type === 'square'){
     this.div.id = id;
   }
 };
 
+// adds an image to the div of a Square object
 Square.prototype.addImage = function(src){
   var _self = this, img, stage = _self.stage;
   if(!_self.attachedImage){
@@ -97,11 +101,12 @@ Square.prototype.addImage = function(src){
   }
 };
 
+// adds an event listener on a Square object 
 Square.prototype.on = function(evtType,cb){
   this.div.style.cursor = 'pointer';
   this.div.addEventListener(evtType,cb);
 };
-//adds TweenLite.to and TweenLite.from animation functionality to Square 
+// TweenLite.to 
 Square.prototype.to = function(duration,props,option){
   if(option && option === 'img'){
     TweenLite.to(this.attachedImage, duration, props);
@@ -110,6 +115,7 @@ Square.prototype.to = function(duration,props,option){
   }
 };
 
+// TweenLite.from  
 Square.prototype.from = function(duration,props,option){
   if(this.div.style.visibility === 'hidden'){
     this.hide = false;
@@ -127,7 +133,12 @@ Square.prototype.setProp = function(prop,val){
   this.div.style[prop] = val;
 };
 
-// how to create a proper getters-setters 
+// universal CSS property getter 
+Square.prototype.setProp = function(prop){
+  return this.div.style[prop];
+};
+
+// // sets opacity or alpha of the div
 Object.defineProperty(Square.prototype, 'opacity', {
   get: function(){
     return this.div.style.opacity;
@@ -137,6 +148,7 @@ Object.defineProperty(Square.prototype, 'opacity', {
   }
 });
 
+// sets opacity or alpha of the div
 Object.defineProperty(Square.prototype, 'alpha', {
   get: function(){
     return this.div.style.opacity;
@@ -146,6 +158,7 @@ Object.defineProperty(Square.prototype, 'alpha', {
   }
 });
 
+// define an outline value (true, 'black', 'yes', or a number value for line thickness)
 Object.defineProperty(Square.prototype, 'outline', {
   set: function(val){
     var _this = this;
@@ -157,18 +170,21 @@ Object.defineProperty(Square.prototype, 'outline', {
   }
 });
 
+// sets the inner div's 'x' or top property
 Object.defineProperty(Square.prototype, 'x', {
   set: function(val){
     this.div.style.left = val + 'px';
   }
 });
 
+// sets the inner div's 'y' or top property
 Object.defineProperty(Square.prototype, 'y', {
   set: function(val){
     this.div.style.top = val + 'px';
   }
 });
 
+// setter / getter for div color
 Object.defineProperty(Square.prototype, 'color', {
   get: function(){
     return this.div.style.backgroundColor;
@@ -178,12 +194,14 @@ Object.defineProperty(Square.prototype, 'color', {
   }
 });
 
+// returns style properties of the div
 Object.defineProperty(Square.prototype, 'style', {
   get: function(){
     return this.div.style;
   }
 });
 
+// set height of the inner div on a Square object 
 Object.defineProperty(Square.prototype, 'width', {
   get: function(){
     var w = this.div.style.width || 0;
@@ -197,6 +215,7 @@ Object.defineProperty(Square.prototype, 'width', {
   }
 });
 
+// set height of the inner div on a Square object 
 Object.defineProperty(Square.prototype, 'height', {
   set: function(val){
     var _self = this;
@@ -206,6 +225,7 @@ Object.defineProperty(Square.prototype, 'height', {
   }
 });
 
+// returns the attached image on a Square-object div
 Object.defineProperty(Square.prototype, 'image', {
   get: function(){
     var _self = this;

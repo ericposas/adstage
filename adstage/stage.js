@@ -1,4 +1,4 @@
-/*global console, adstage, log, TimelineLite, TweenLite*/
+/*global console, adstage, log, TimelineLite, TweenLite, Square, Power1*/
 
 function Stage(w,h,id){
   // constructor
@@ -36,16 +36,29 @@ function Stage(w,h,id){
   }
 }
 
-// TimelineLite 
-Stage.prototype.tl = function(arr, stagger, cb){
+// TimelineLite 'from'
+Stage.prototype.tl_from = function(arr, dur, params, stagger, cb, cbparams){
   var t = new TimelineLite(), i;
   function setVis(arr,i){ TweenLite.set(arr[i], {visibility:'visible'}); }
+  var p = params || {};
   for(i=0;i<arr.length;i+=1){
-    t.from(arr[i], 0.5, {x:-30, alpha:0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 ? cb : null)}, stagger);
+    t.from(arr[i], dur || 0.5, {x:p.x||-20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 && cb ? cb : null), onCompleteParams:[(i == arr.length - 2 && cbparams ? cbparams : null)]}, stagger||'-=0.25');
   }
   return t;
 };
 
+// TimelineLite 'to'
+Stage.prototype.tl_to = function(arr, dur, params, stagger, cb, cbparams){
+  var t = new TimelineLite(), i;
+  function setVis(arr,i){ TweenLite.set(arr[i], {visibility:'visible'}); }
+  var p = params || {};
+  for(i=0;i<arr.length;i+=1){
+    t.to(arr[i], dur || 0.5, {x:p.x||20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 && cb ? cb : null), ease:Power1.easeIn, onCompleteParams:[(i == arr.length - 2 && cbparams ? cbparams : null)]}, stagger||'-=0.25');
+  }
+  return t;
+};
+
+// adds multiple, predefined Square objects to the Stage instance, specified via an Array 
 Stage.prototype.addMult = function(arr){
   if(typeof arr === 'object'){
     var i;
@@ -57,6 +70,7 @@ Stage.prototype.addMult = function(arr){
   }
 };
 
+// add a Square object to the Stage instance 
 Stage.prototype.add = function(obj){
   if(obj.div){
     //obj.stage = this;
@@ -74,11 +88,15 @@ Stage.prototype.add = function(obj){
 };
 
 // takes in an integer, and creates the specified number of squares in sequence -- usually for text blocks 
-Stage.prototype.generateSquares = function(integer){
-  var i;
+Stage.prototype.generateSquares = function(integer, hide){
+  var i, list = [];
   for(i=0;i<integer;i+=1){
-    
+    var n = i + 1;
+    var s = new Square({id:'t'+n,image:n+'.png',x:1,y:1,hide:hide});
+    this.add(s);
+    list.push(s);
   }
+  return list;
 };
 
 Stage.prototype.animate = function(){
