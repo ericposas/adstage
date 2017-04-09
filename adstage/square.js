@@ -92,8 +92,7 @@ Square.prototype.addImage = function(src){
       // waits until images are loaded until displaying them 
       if(stage._loadedimages.length === stage._images.length){
         stage._adloaded = true;
-        stage.showImages();
-        stage.animate();
+        stage.start();
       }
     };
   }else{
@@ -241,6 +240,29 @@ Object.defineProperty(Square.prototype, 'tw', {
     return '#' + this.div.id;
   }
 });
+
+// set 'buttonMode' similar to Flash -- sets the cursor hand on a Square object instance
+Object.defineProperty(Square.prototype, 'buttonMode', {
+  set: function(val){
+    var self = this;
+    if(val === true){
+      self.div.style.cursor = 'pointer';
+    }
+  }
+});
+
+// set visibility of Square inner div
+Object.defineProperty(Square.prototype, 'visible', {
+  set: function(val){
+    var self = this;
+    if(val === true){
+      self.div.style.visibility = 'visible';
+    }else if(val === false){
+      self.div.style.visibility = 'hidden';
+    }
+  }
+});
+
 
 
 

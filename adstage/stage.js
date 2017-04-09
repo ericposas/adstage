@@ -1,4 +1,4 @@
-/*global console, adstage, log, TimelineLite, TweenLite, Square, Power1*/
+/*global console, adstage, log, TimelineLite, TweenLite, AdState, Square, Power1*/
 
 function Stage(w,h,id){
   // constructor
@@ -83,6 +83,8 @@ Stage.prototype.add = function(obj){
     if(obj.attachedImage){
       this.square_imgs.push(obj.attachedImage); // stores the inner 'img' element within the Square 'div' element
     }
+  }else if(obj.add){
+    obj.add();
   }
   return this;
 };
@@ -97,6 +99,17 @@ Stage.prototype.generateSquares = function(integer, hide){
     list.push(s);
   }
   return list;
+};
+
+Stage.prototype.start = function(){
+  this._state = 'started';
+  this.showImages();
+  this.animate();
+};
+
+Stage.prototype.end = function(){
+  this._state = 'ended';
+  return this._state;
 };
 
 Stage.prototype.animate = function(){

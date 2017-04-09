@@ -1,5 +1,5 @@
 /*global Stage, Square, adstage, TweenLite, Power1, alert, window, TimelineLite, U*/
-/*global BG, Outline, t1*/
+/*global BG, Outline, Bubble*/
 /*global Back, Power1*/
 
 function init(){
@@ -15,6 +15,11 @@ function init(){
   stage.generateSquares(6, true); // generates 6 Squares with image elements '1.png' through '2.png'
   stage.add(logo);
   stage.add(outline);
+  
+  // create a 'Legal Bubble' class 
+  var bubble = new Bubble();
+  stage.add(bubble);
+  
   
   /* ANIMATION */
   // dynamically set animation function to be called from adstage once all images are loaded 
@@ -40,7 +45,7 @@ function init(){
     
     U.d(5, function(){
       function ctaPop(){
-        cta.from(0.75, {scale:0, transformOrigin:U.torg(300,528), ease:Back.easeOut});
+        cta.from(0.75, {scale:0, transformOrigin:U.torg(300,528), ease:Back.easeOut, onComplete:stage.end()});
       }
       legal.from(1, {alpha:0, onComplete:ctaPop});
     });
