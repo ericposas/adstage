@@ -23,6 +23,7 @@ function init(){
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = function (){
     (function one(){
+      f1.t1.from(0.5, {x:-20,alpha:0});
       
     }());
   };
