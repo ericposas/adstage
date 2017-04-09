@@ -16,6 +16,9 @@ function Stage(w,h,id){
   this._loadedimages = [];
   this._objcount = 0;
   this._adloaded = false;
+  this.squares = [];
+  this.square_divs = []
+  this.square_imgs = [];
   if(w && h){
     this.dimensions={w:w,h:h};
   }else{
@@ -50,6 +53,12 @@ Stage.prototype.add = function(obj){
     this._objcount+=1;
     obj.div.id = obj.div.id || 'sq' + this._objcount;
     this.div.appendChild(obj.div);
+    // store Square objects, so they can be accessible via the Stage instance 
+    this.squares.push(obj); // stores each Square instance
+    this.square_divs.push(obj.div); // stores each 'div' of the stored Square instance
+    if(obj.attachedImage){
+      this.square_imgs.push(obj.attachedImage); // stores the inner 'img' element within the Square 'div' element
+    }
   }
   return this;
 };

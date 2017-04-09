@@ -28,7 +28,7 @@ function Square(params){
       self.div.style.top = self.params.y + 'px' || '0px';
       //set visibility
       self.hide = self.params.hide || false; // this.hide equals provided 'hide' param if it exists
-      self.div.style.opacity = self.hide === true ? 0 : 1; // set the Square's div's opacity to the this.hide evaluated value 
+      self.div.style.visibility = (self.hide === true ? 'hidden' : 'visible'); // set the Square's div's visibility to the this.hide evaluated value 
     }
   }
   // optional parameters to pass in to Square object 
@@ -111,6 +111,10 @@ Square.prototype.to = function(duration,props,option){
 };
 
 Square.prototype.from = function(duration,props,option){
+  if(this.div.style.visibility === 'hidden'){
+    this.hide = false;
+    this.div.style.visibility = 'visible';
+  }
   if(option && option === 'img'){
     TweenLite.from(this.attachedImage, duration, props);
   }else{

@@ -1,4 +1,4 @@
-/*global Stage, Square, adstage, TweenLite*/
+/*global Stage, Square, adstage, TweenLite, alert, window, TimelineLite*/
 /*global BG, Outline, t1*/
 
 function init(){
@@ -7,7 +7,7 @@ function init(){
   var bg = new BG(); //bg class instance
   //var t1 = new Square({id:'t1',image:'1.png',x:1,y:1}); 
   var f1 = {
-    t1: new Square({id:'t1',image:'1.png',x:1,y:1}),
+    t1: new Square({id:'t1',image:'1.png',x:1,y:1,hide:true}),
     t2: new Square({id:'t2',image:'2.png',x:1,y:1,hide:true}),
     t3: new Square({id:'t3',image:'3.png',x:1,y:1,hide:true})
   };
@@ -23,7 +23,12 @@ function init(){
   // dynamically set animation function to be called from adstage once all images are loaded 
   adstage.stage.animate = function (){
     (function one(){
-      f1.t1.from(0.5, {x:-20,alpha:0});
+      var tl = new TimelineLite();
+      var frame1 = [f1.t1.tw, f1.t2.tw, f1.t3.tw];
+      tl.from(frame1[0], 0.5, {x:-30, alpha:0, onStart:function(){
+        TweenLite.set(frame1[0], {visibility:'visible'});
+      }});
+      f1.t2.from(0.5, {x:-20, alpha:0}); 
       
     }());
   };
