@@ -16,7 +16,9 @@ function init(){
   };
   var logo = new Square({id:'logo',image:'logo.png'}); // logo graphic
   var outline = new Outline(); // ad 'outline' overlay -- click area
-  stage.add(bg).add(f1.t1).add(f1.t2).add(f1.t3).add(logo).add(outline); // chaining! 
+  //stage.add(bg).add(f1.t1).add(f1.t2).add(f1.t3).add(logo).add(outline); // chaining! 
+  // testing adding multiple Square objects via a Stage method 
+  stage.addMult([bg,f1.t1,f1.t2,f1.t3,outline]);
   
   /* ANIMATION */
   // dynamically set animation function to be called from adstage once all images are loaded 

@@ -5,3 +5,4 @@
 - work on creating animation interface with TweenLite commands - DONE!
 - incorporate TimeLine functionality "staggering" 
 - figure out how to access Square objects via the Stage object (feature-hideoption) 
+- started new branch (feature-addsquares, for adding multiple squares to the stage) before completing feature-hideoption

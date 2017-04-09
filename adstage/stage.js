@@ -33,6 +33,17 @@ function Stage(w,h,id){
   }
 }
 
+Stage.prototype.addMult = function(arr){
+  if(typeof arr === 'object'){
+    var i;
+    for(i=0;i<arr.length;i+=1){
+      if(arr[i].type && arr[i].type === 'square'){
+        this.add(arr[i]);
+      }
+    }
+  }
+};
+
 Stage.prototype.add = function(obj){
   if(obj.div){
     //obj.stage = this;
