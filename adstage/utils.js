@@ -25,3 +25,7 @@ U.d = function(d, cb){
   TweenLite.delayedCall(d, cb);
 };
 
+// calculate transformOrigin -- halves the inputted number
+U.torg = function(x,y){
+  return (x/2) + 'px ' + (y/2) + 'px';
+};
