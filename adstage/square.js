@@ -26,6 +26,9 @@ function Square(params){
       //set initial position
       self.div.style.left = self.params.x + 'px' || '0px';
       self.div.style.top = self.params.y + 'px' || '0px';
+      //set visibility
+      self.hide = self.params.hide || false; // this.hide equals provided 'hide' param if it exists
+      self.div.style.opacity = self.hide === true ? 0 : 1; // set the Square's div's opacity to the this.hide evaluated value 
     }
   }
   // optional parameters to pass in to Square object 
