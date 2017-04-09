@@ -2,7 +2,7 @@
 /*global BG, Outline, t1*/
 
 function init(){
-  //new main.js file edited -- 04.07.2017
+  //new main.js file edited -- 04.09.2017
   var stage = new Stage(300,600,'Test Ad'); // our 'stage' instance
   var bg = new BG(); //bg class instance
   var logo = new Square({id:'logo',image:'logo.png'}); // logo graphic
