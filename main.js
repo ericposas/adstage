@@ -2,6 +2,7 @@
 /*global BG, Outline, Bubble, CTAhover*/
 /*global Back, Power1*/
 
+/* INITIALIZATION */
 function init(){
   //new main.js file edited -- 04.10.2017
   var stage = new Stage(300,600,'Test Ad'); // our 'stage' instance
