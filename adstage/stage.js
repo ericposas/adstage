@@ -87,8 +87,13 @@ Stage.prototype.add = function(obj){
 };
 
 // takes in an integer or array, and creates the specified number of squares in sequence -- usually for text blocks 
-Stage.prototype.generateSquares = function(integer, hide, filetype){
-  var i, list = [];
+Stage.prototype.generateSquares = function(integer, hide, returntype, filetype){
+  var i, list;
+  if(returntype === 'object'){
+    list = {};
+  }else{
+    list = [];
+  }
   if(typeof integer === 'number'){
     for(i=0;i<integer;i+=1){
       var n = i + 1;
@@ -100,7 +105,11 @@ Stage.prototype.generateSquares = function(integer, hide, filetype){
     for(i=0;i<integer.length;i+=1){
       var sq = new Square({id:integer[i],image:integer[i]+(filetype||'.png'),x:1,y:1,hide:hide});
       this.add(sq);
-      list.push(sq);
+      if(returntype === 'array'){
+        list.push(sq);
+      }else if(returntype === 'object'){
+        list[integer[i]] = sq;
+      }
     }
   }
   return list;

@@ -9,8 +9,8 @@ function init(){
   var logo = new Square({id:'logo',image:'logo.png'});
   var outline = new Outline(); // ad 'outline' overlay -- click area
   stage.add(bg);
-  var imgs = stage.generateSquares(['road','van','cta','legal'], true);
-  var text = stage.generateSquares(6, true); // generates 6 Squares with image elements '1.png' through '2.png'
+  var imgs = stage.generateSquares(['road','van','cta','legal'], true, 'object');
+  var text = stage.generateSquares(6, true, 'array'); // generates '1.png' - '6.png' Square elems
   stage.add(logo);
   stage.add(outline);
   
@@ -19,14 +19,13 @@ function init(){
   //stage.add(bubble);
   
   // road
-  imgs[0].visible = true;
+  imgs.road.visible = true;
   
   // van
-  var imgIDs = U.gID(imgs); // lists the 'id' value of the 'imgs' array of Squares
-  imgs[1].attachedImage.width = 400;
-  imgs[1].visible = true;
-  imgs[1].x = -140;
-  imgs[1].y = 330;
+  imgs.van.attachedImage.width = 400;
+  imgs.van.visible = true;
+  imgs.van.x = -140;
+  imgs.van.y = 330;
   
   /* ANIMATION */
   // dynamically set animation function to be called from adstage once all images are loaded 
@@ -52,12 +51,12 @@ function init(){
     
     U.d(5, function(){
       function ctaPop(){
-        imgs[2].from(0.75, {scale:0, transformOrigin:U.torg(300,528), ease:Back.easeOut, onComplete:function(){
+        imgs.cta.from(0.75, {scale:0, transformOrigin:U.torg(300,528), ease:Back.easeOut, onComplete:function(){
           stage.add(bubble); //dynamically add bubble when needed 
           stage.end();
         }});
       }
-      imgs[3].from(1, {alpha:0, onComplete:ctaPop});
+      imgs.legal.from(1, {alpha:0, onComplete:ctaPop});
     });
     
   };
