@@ -3,11 +3,10 @@
 - need to move all window.adstage globals to the Stage instance - DONE!
 - some sort of issue with setting 'image' param when instantiating a Square instance - DONE!
 - work on creating animation interface with TweenLite commands - DONE!
-- incorporate TimeLine functionality "staggering" 
+- incorporate TimeLine functionality "staggering" - DONE!
 - figure out how to access Square objects via the Stage object (feature-hideoption) - DONE!
 - started new branch (feature-addsquares, for adding multiple squares to the stage) - DONE!
 - generateSquares() is now able to take an array as a param - DONE!
 - work on a 'Templating' feature - DONE!
 - work on a 'MovieClip'/'Sprite' class 
 - work on documentation of methods 
-
