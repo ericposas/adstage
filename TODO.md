@@ -6,6 +6,7 @@
 - incorporate TimeLine functionality "staggering" 
 - figure out how to access Square objects via the Stage object (feature-hideoption) - DONE!
 - started new branch (feature-addsquares, for adding multiple squares to the stage) - DONE!
+- generateSquares() is now able to take an array as a param - DONE!
 - work on a 'Templating' feature 
 - work on a 'MovieClip' class -- an object that is a collection of images that you can sort through, holds a collection of 'Square' objects 
 - work on documentation of methods 

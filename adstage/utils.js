@@ -29,3 +29,18 @@ U.d = function(d, cb){
 U.torg = function(x,y){
   return (x/2) + 'px ' + (y/2) + 'px';
 };
+
+// returns .id value of a single Square instance or an array/collection of Squares 
+U.gID = function(square){
+  if(typeof square === 'object'){
+    var i,list=[];
+    for(i=0;i<square.length;i+=1){
+      if(square[i].type === 'square'){
+        list.push(square[i].id);
+      }
+    }
+    return list;
+  }else if(square.type === 'square'){
+    return square.id;
+  }
+};

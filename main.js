@@ -1,4 +1,4 @@
-/*global Stage, Square, adstage, TweenLite, Power1, alert, window, TimelineLite, U*/
+/*global Stage, Square, adstage, TweenLite, Power1, alert, window, TimelineLite, U, log*/
 /*global BG, Outline, Bubble*/
 /*global Back, Power1*/
 
@@ -22,6 +22,7 @@ function init(){
   imgs[0].visible = true;
   
   // van
+  var imgIDs = U.gID(imgs); // lists the 'id' value of the 'imgs' array of Squares
   imgs[1].attachedImage.width = 400;
   imgs[1].visible = true;
   imgs[1].x = -140;
