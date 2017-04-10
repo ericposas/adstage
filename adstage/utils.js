@@ -1,6 +1,11 @@
-/*global TweenLite*/
+/*global console, TweenLite*/
 
 var U = {};
+
+// create shorthand 'log' function 
+window.log = console.log || function(m){
+  console.log(m);
+};
 
 // removes the specified number of elements from an array 
 U.pop = function(arr, num){

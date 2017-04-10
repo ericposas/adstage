@@ -1,0 +1,17 @@
+/* STAGE */
+
+
+.stage{
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.sq{
+  top: 0px;
+  left: 0px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+

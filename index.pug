@@ -3,7 +3,7 @@
 - var tw=tw_local;
 - var clickURL='http://www.google.com/';
 //- adstage scripts
-- var adstage=['log','utils','stage','square'];
+- var adstage=['utils','stage','square'];
 //- classes, objects defined by user
 - var custom=['bg','outline','bubble','ctahover'];
 
@@ -16,8 +16,7 @@ html(lang='en')
     script.
       var clickTag='#{clickURL}';
     script(src=tw)
-    link(href='adstage/stage.css' rel='stylesheet')
-    link(href='adstage/square.css' rel='stylesheet')
+    link(href='adstage/adstage.css' rel='stylesheet')
     each val in adstage
       script(src='adstage/'+val+'.js')
     each val in custom
