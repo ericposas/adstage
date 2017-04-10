@@ -1,7 +1,7 @@
 /* STAGE */
 
 .stage{
-  overflow-x: hidden;
+  overflow: hidden;
   top: 0;
   left: 0;
 }
