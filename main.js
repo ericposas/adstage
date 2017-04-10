@@ -17,6 +17,9 @@ function init(){
   var bubble = new Bubble();
   //stage.add(bubble);
   var ctahov = new CTAhover(imgs.cta);
+  // template image object 
+  var tmp = stage.template(['tmp0000','tmp0001','tmp0002','tmp0003'], '.jpg');
+  
   
   // road
   imgs.road.visible = true;
@@ -26,6 +29,10 @@ function init(){
   imgs.van.visible = true;
   imgs.van.x = -140;
   imgs.van.y = 330;
+  
+  // show template image
+  tmp.goto(3);
+  tmp.opacity = 0.25;
   
   /* ANIMATION */
   // dynamically set animation function to be called from adstage once all images are loaded 

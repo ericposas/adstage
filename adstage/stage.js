@@ -86,6 +86,29 @@ Stage.prototype.add = function(obj){
   return this;
 };
 
+// template object -- a collection of related images, able to be sorted through via a 'goto' method
+Stage.prototype.template = function(arr, filetype){
+  var template = Stage.prototype.generateSquares.call(this, arr, true, 'array', filetype);
+  template.goto = function(n){
+    if(n < 0){
+      template[0].visible = true;
+    }else if(n > template.length){
+      template[template.length - 1].visible = true;
+    }else{
+      template[n - 1].visible = true;
+    }
+  };
+  Object.defineProperty(template, 'opacity', {
+    set: function(v){
+      var i;
+      for(i=0;i<template.length;i+=1){
+        template[i].opacity = v;
+      }
+    }
+  });
+  return template;
+};
+
 // takes in an integer or array, and creates the specified number of squares in sequence -- usually for text blocks 
 Stage.prototype.generateSquares = function(integer, hide, returntype, filetype){
   var i, list;
