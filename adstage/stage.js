@@ -11,6 +11,7 @@ function Stage(w,h,id){
   stg.id = id || 'stage';
   stg.id = stg.id.replace(/\s+/g, '');
   document.body.appendChild(stg);
+  stg.classList.add('stage');
   this.div = stg;
   this._images = [];
   this._loadedimages = [];
@@ -21,6 +22,9 @@ function Stage(w,h,id){
   this.square_imgs = [];
   if(w && h){
     this.dimensions={w:w,h:h};
+    this.div.style.position = 'absolute';
+    this.div.style.width = w + 2 + 'px';
+    this.div.style.height = h + 2 + 'px';
   }else{
     console.error('Please pass width/height values to Stage to set the ad size');
   }
