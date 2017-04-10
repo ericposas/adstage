@@ -8,7 +8,6 @@ function Bubble(){
     adstage.stage.add(bubble);
     adstage.stage.add(legalhover);
     legalhover.on('mouseover', function(){
-      log(adstage.stage._state);
       if(adstage.stage._state === 'ended'){
         bubble.visible = true;
       }
