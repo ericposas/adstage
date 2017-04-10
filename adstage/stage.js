@@ -1,11 +1,9 @@
 /*global console, adstage, log, TimelineLite, TweenLite, AdState, Square, Power1*/
 
+// Stage object - set the initial width, height, and ID
 function Stage(w,h,id){
-  // constructor
-  // document vars 
   var dim = document.getElementById('dimensions');
   var title = document.getElementsByTagName('title')[0];
-  // this
   var self = this;
   var stg = document.createElement('div');
   stg.id = id || 'stage';
@@ -28,11 +26,8 @@ function Stage(w,h,id){
   }else{
     console.error('Please pass width/height values to Stage to set the ad size');
   }
-  //set document ad.size vars
   dim.setAttribute('content', 'width='+w+',height='+h);
-  //set ad title
   title.innerHTML = id;
-  //set global 'adstage' object and globally accessible variables
   if(!window.adstage){
     window.adstage = {
       stage: self
@@ -77,15 +72,13 @@ Stage.prototype.addMult = function(arr){
 // add a Square object to the Stage instance 
 Stage.prototype.add = function(obj){
   if(obj.div){
-    //obj.stage = this;
     this._objcount+=1;
     obj.div.id = obj.div.id || 'sq' + this._objcount;
     this.div.appendChild(obj.div);
-    // store Square objects, so they can be accessible via the Stage instance 
-    this.squares.push(obj); // stores each Square instance
-    this.square_divs.push(obj.div); // stores each 'div' of the stored Square instance
+    this.squares.push(obj);
+    this.square_divs.push(obj.div);
     if(obj.attachedImage){
-      this.square_imgs.push(obj.attachedImage); // stores the inner 'img' element within the Square 'div' element
+      this.square_imgs.push(obj.attachedImage);
     }
   }else if(obj.add){
     obj.add();
@@ -93,32 +86,41 @@ Stage.prototype.add = function(obj){
   return this;
 };
 
-// takes in an integer, and creates the specified number of squares in sequence -- usually for text blocks 
-Stage.prototype.generateSquares = function(integer, hide){
+// takes in an integer or array, and creates the specified number of squares in sequence -- usually for text blocks 
+Stage.prototype.generateSquares = function(integer, hide, filetype){
   var i, list = [];
-  for(i=0;i<integer;i+=1){
-    var n = i + 1;
-    var s = new Square({id:'t'+n,image:n+'.png',x:1,y:1,hide:hide});
-    this.add(s);
-    list.push(s);
+  if(typeof integer === 'number'){
+    for(i=0;i<integer;i+=1){
+      var n = i + 1;
+      var s = new Square({id:'t'+n,image:n+(filetype||'.png'),x:1,y:1,hide:hide});
+      this.add(s);
+      list.push(s);
+    }
+  }else if(typeof integer === 'object'){
+    for(i=0;i<integer.length;i+=1){
+      var sq = new Square({id:integer[i],image:integer[i]+(filetype||'.png'),x:1,y:1,hide:hide});
+      this.add(sq);
+      list.push(sq);
+    }
   }
   return list;
 };
 
+// initiates showing images and animating elements
 Stage.prototype.start = function(){
   this._state = 'started';
   this.showImages();
   this.animate();
 };
 
+// end state of ad
 Stage.prototype.end = function(){
   this._state = 'ended';
   return this._state;
 };
 
-Stage.prototype.animate = function(){
-  //set this dynamically from init(); function 
-};
+// dynamically set via main.js and called when all images are loaded
+Stage.prototype.animate = function(){};
 
 Stage.prototype.showImages = function(){
   var i;
@@ -127,6 +129,7 @@ Stage.prototype.showImages = function(){
   }
 };
 
+// logs the this._images property of the object that is called
 Stage.prototype.logImages = function(){
   if(!this._images){
     this._images = [];

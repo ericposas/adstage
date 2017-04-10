@@ -1,11 +1,9 @@
 /*global window, console, adstage, TweenLite, TimelineLite*/
 
-// Square object constructor - takes a params object {} 
+// Square object constructor - takes a params object {}
 function Square(params){
-  // constructor
   function checkParams(self){
     if(self.params){
-      //set default dimensions
       if(self.params.width){
         self.div.style.width = self.params.width + 'px';
       }else{
@@ -16,24 +14,17 @@ function Square(params){
       }else{
         self.div.style.height = adstage.stage.dimensions.h + 'px';
       }
-      //set default color
       if(self.params.color){self.div.style.backgroundColor=self.params.color;}
-      //set border if 'outline'
       if(self.params.outline == true || self.params.outline == 'yes' || self.params.outline == 'black'){self.div.style.border='1px solid black';}
-      //set image
       if(self.params.image && typeof self.params.image === 'string'){
         self.addImage(self.params.image);
       }
-      //set initial position
       self.div.style.left = self.params.x + 'px' || '0px';
       self.div.style.top = self.params.y + 'px' || '0px';
-      //set visibility
-      self.hide = self.params.hide || false; // this.hide equals provided 'hide' param if it exists
-      self.div.style.visibility = (self.hide === true ? 'hidden' : 'visible'); // set the Square's div's visibility to the this.hide evaluated value 
+      self.hide = self.params.hide || false;
+      self.div.style.visibility = (self.hide === true ? 'hidden' : 'visible');
     }
   }
-  // optional parameters to pass in to Square object 
-  // {bgColor, width, height, id}
   this.stage = adstage.stage;
   var stage = this.stage;
   var sq = document.createElement('div');
@@ -41,19 +32,14 @@ function Square(params){
   this.type = 'square';
   this.params = params || 'undefined';
   this.div = sq;
-  //square class
   sq.classList.add('sq');
-  //check stage object 
   if(window.adstage){
     checkParams(this);
-    //stage._objcount++;
     if(this.params && this.params.id){this.div.id = this.params.id;} //else{sq.id = 'sq' + stage._objcount;}
     this.id = this.div.id;
   }else{
     console.error('No "Stage" object initialized.');
   }
-  //._objcount+=1;
-  //this.stage = adstage.stage;
 }
 
 // get the id value of the Square's div 
@@ -74,12 +60,8 @@ Square.prototype.setID = function(id){
 Square.prototype.addImage = function(src){
   var _self = this, img, stage = _self.stage;
   if(!_self.attachedImage){
-    //if(_self.params.width){
     img = new Image(_self.params.width || adstage.stage.dimensions.w);
-    //}else{
-    //  img = new Image();
-    //}
-    img.src = src ? 'images/' + src : console.error('Please supply an image src.'); // maybe set 'images' folder in a config file 
+    img.src = src ? 'images/' + src : console.error('Please supply an image src.');
     this.attachedImage = img;
     this.attachedImage.style.opacity = 0;
     this.div.appendChild(img);
@@ -88,8 +70,6 @@ Square.prototype.addImage = function(src){
     img.onload = function(){
       stage._loadedimages.push(img);
       console.log('images loaded: ' + stage._loadedimages.length);
-      // _self.attachedImage.style.opacity = 1;
-      // waits until images are loaded until displaying them 
       if(stage._loadedimages.length === stage._images.length){
         stage._adloaded = true;
         stage.start();
@@ -105,6 +85,7 @@ Square.prototype.on = function(evtType,cb){
   this.div.style.cursor = 'pointer';
   this.div.addEventListener(evtType,cb);
 };
+
 // TweenLite.to 
 Square.prototype.to = function(duration,props,option){
   if(option && option === 'img'){
