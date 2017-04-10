@@ -21,7 +21,7 @@ function init(){
   // road
   imgs.road.visible = true;
   
-  // van
+  // van -- setting the return type to 'object' via the Stage.generateSquares() method allows access to the Square instances as properties of an object -- super cool 
   imgs.van.attachedImage.width = 400;
   imgs.van.visible = true;
   imgs.van.x = -140;
