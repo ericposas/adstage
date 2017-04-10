@@ -34,6 +34,7 @@ function init(){
   /* ANIMATION */
   adstage.stage.animate = function (){
     var tl = stage.tl_from(frame1);
+    imgs.van.from(8, {x:-500});
     
     U.d(3, function(){
         tl = stage.tl_to(frame1);
