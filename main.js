@@ -1,5 +1,5 @@
 /*global Stage, Square, adstage, TweenLite, Power1, alert, window, TimelineLite, U, log*/
-/*global BG, Outline, Bubble*/
+/*global BG, Outline, Bubble, CTAhover*/
 /*global Back, Power1*/
 
 function init(){
@@ -13,10 +13,10 @@ function init(){
   var text = stage.generateSquares(6, true, 'array'); // generates '1.png' - '6.png' Square elems
   stage.add(logo);
   stage.add(outline);
-  
   // create a 'Legal Bubble' class 
   var bubble = new Bubble();
   //stage.add(bubble);
+  var ctahov = new CTAhover(imgs.cta);
   
   // road
   imgs.road.visible = true;
@@ -52,7 +52,8 @@ function init(){
     U.d(5, function(){
       function ctaPop(){
         imgs.cta.from(0.75, {scale:0, transformOrigin:U.torg(300,528), ease:Back.easeOut, onComplete:function(){
-          stage.add(bubble); //dynamically add bubble when needed 
+          stage.add(bubble); //dynamically add bubble ctahover when needed 
+          stage.add(ctahov);
           stage.end();
         }});
       }

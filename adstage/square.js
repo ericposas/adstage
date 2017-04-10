@@ -88,6 +88,7 @@ Square.prototype.on = function(evtType,cb){
 
 // TweenLite.to 
 Square.prototype.to = function(duration,props,option){
+  props.force3D=false;
   if(option && option === 'img'){
     TweenLite.to(this.attachedImage, duration, props);
   }else{
@@ -101,6 +102,7 @@ Square.prototype.from = function(duration,props,option){
     this.hide = false;
     this.div.style.visibility = 'visible';
   }
+  props.force3D=false;
   if(option && option === 'img'){
     TweenLite.from(this.attachedImage, duration, props);
   }else{
