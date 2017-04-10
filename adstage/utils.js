@@ -30,17 +30,18 @@ U.torg = function(x,y){
   return (x/2) + 'px ' + (y/2) + 'px';
 };
 
-// returns .id value of a single Square instance or an array/collection of Squares 
-U.gID = function(square){
+// returns any property value of a single Square instance or iterates through an array/collection of Squares returning the specified prop of each 
+U.getProp = function(square, prop){
   if(typeof square === 'object'){
     var i,list=[];
     for(i=0;i<square.length;i+=1){
       if(square[i].type === 'square'){
-        list.push(square[i].id);
+        list.push(square[i][prop]);
       }
     }
     return list;
   }else if(square.type === 'square'){
-    return square.id;
+    return square[prop];
   }
 };
+

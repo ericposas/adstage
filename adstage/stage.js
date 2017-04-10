@@ -36,23 +36,23 @@ function Stage(w,h,id){
 }
 
 // TimelineLite 'from'
-Stage.prototype.tl_from = function(arr, dur, params, stagger, cb, cbparams){
-  var t = new TimelineLite(), i;
+Stage.prototype.tl_from = function(arr, dur, params, stagger){
+  var t = new TimelineLite(), i, d = dur||0.5;
   function setVis(arr,i){ TweenLite.set(arr[i], {visibility:'visible'}); }
   var p = params || {};
   for(i=0;i<arr.length;i+=1){
-    t.from(arr[i], dur || 0.5, {x:p.x||-20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 && cb ? cb : null), onCompleteParams:[(i == arr.length - 2 && cbparams ? cbparams : null)]}, stagger||'-=0.25');
+    t.from(arr[i], d, {x:p.x||-20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i]}, stagger||'-=0.25');
   }
   return t;
 };
 
 // TimelineLite 'to'
 Stage.prototype.tl_to = function(arr, dur, params, stagger, cb, cbparams){
-  var t = new TimelineLite(), i;
+  var t = new TimelineLite(), i, d = dur||0.5;
   function setVis(arr,i){ TweenLite.set(arr[i], {visibility:'visible'}); }
   var p = params || {};
   for(i=0;i<arr.length;i+=1){
-    t.to(arr[i], dur || 0.5, {x:p.x||20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i], onComplete:(i == arr.length - 2 && cb ? cb : null), ease:Power1.easeIn, onCompleteParams:[(i == arr.length - 2 && cbparams ? cbparams : null)]}, stagger||'-=0.25');
+    t.to(arr[i], d, {x:p.x||20, y:p.y||0, alpha:p.alpha||0, onStart:setVis, onStartParams:[arr,i], ease:Power1.easeIn}, stagger||'-=0.25');
   }
   return t;
 };
@@ -114,7 +114,7 @@ Stage.prototype.generateSquares = function(integer, hide, returntype, filetype){
   var i, list;
   if(returntype === 'object'){
     list = {};
-  }else{
+  }else if (returntype === 'array'){
     list = [];
   }
   if(typeof integer === 'number'){
