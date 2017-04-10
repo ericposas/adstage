@@ -45,3 +45,13 @@ U.getProp = function(square, prop){
   }
 };
 
+// iterate through object and return array 
+U.iterateThroughObject = function(obj){
+  var arr = [], p;
+  for(p in obj){
+    if(obj.hasOwnProperty(p)){
+      arr.push(p);
+    }
+  }
+  return arr;
+};

@@ -1,4 +1,4 @@
-/*global console, adstage, log, TimelineLite, TweenLite, AdState, Square, Power1*/
+/*global console, adstage, log, TimelineLite, TweenLite, AdState, Square, Power1, U*/
 
 // Stage object - set the initial width, height, and ID
 function Stage(w,h,id){
@@ -110,7 +110,7 @@ Stage.prototype.template = function(arr, filetype){
 };
 
 // takes in an integer or array, and creates the specified number of squares in sequence -- usually for text blocks 
-Stage.prototype.generateSquares = function(integer, hide, returntype, filetype){
+Stage.prototype.generateSquares = function(integer, hide, returntype, filetype, a){
   var i, list;
   if(returntype === 'object'){
     list = {};
@@ -135,7 +135,11 @@ Stage.prototype.generateSquares = function(integer, hide, returntype, filetype){
       }
     }
   }
-  return list;
+  if(a == true && filetype !== 'object'){
+    return U.getProp(list, 'div');
+  }else{
+    return list;
+  }
 };
 
 // initiates showing images and animating elements

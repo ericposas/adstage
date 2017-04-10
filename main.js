@@ -11,10 +11,8 @@ function init(){
   stage.add(bg);
   var imgs = stage.generateSquares(['road','van','cta','legal'], true, 'object');
   imgs.road.visible = true;
-  var f1_assets = stage.generateSquares(3, true, 'array');
-  var frame1 = U.getProp(f1_assets, 'div');
-  var f2_assets = stage.generateSquares([4,5,6], true, 'array');
-  var frame2 = U.getProp(f2_assets, 'div');
+  var frame1 = stage.generateSquares(3, true, 'array', '.png', true);
+  var frame2 = stage.generateSquares([4,5,6], true, 'array', '', true);
   stage.add(logo);
   stage.add(outline);
   
